@@ -1,0 +1,438 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A001000000000001 /* UsageMeterApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000001 /* UsageMeterApp.swift */; };
+		A001000000000002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000002 /* AppDelegate.swift */; };
+		A001000000000003 /* UsageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000003 /* UsageData.swift */; };
+		A001000000000004 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000004 /* AppSettings.swift */; };
+		A001000000000005 /* KeychainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000005 /* KeychainService.swift */; };
+		A001000000000006 /* WebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000006 /* WebController.swift */; };
+		A001000000000007 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000007 /* APIClient.swift */; };
+		A001000000000008 /* UsageTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000008 /* UsageTracker.swift */; };
+		A001000000000009 /* PopoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000009 /* PopoverView.swift */; };
+		A001000000000010 /* CircularGaugeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000010 /* CircularGaugeView.swift */; };
+		A001000000000011 /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000011 /* StatsView.swift */; };
+		A001000000000012 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000012 /* SettingsView.swift */; };
+		A001000000000013 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000013 /* OnboardingView.swift */; };
+		A001000000000014 /* MenuBarIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000014 /* MenuBarIcon.swift */; };
+		A001000000000015 /* Color+Gauge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A001000100000015 /* Color+Gauge.swift */; };
+		A001000000000016 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A001000100000016 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A001000100000001 /* UsageMeterApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageMeterApp.swift; sourceTree = "<group>"; };
+		A001000100000002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A001000100000003 /* UsageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageData.swift; sourceTree = "<group>"; };
+		A001000100000004 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		A001000100000005 /* KeychainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainService.swift; sourceTree = "<group>"; };
+		A001000100000006 /* WebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebController.swift; sourceTree = "<group>"; };
+		A001000100000007 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		A001000100000008 /* UsageTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageTracker.swift; sourceTree = "<group>"; };
+		A001000100000009 /* PopoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverView.swift; sourceTree = "<group>"; };
+		A001000100000010 /* CircularGaugeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularGaugeView.swift; sourceTree = "<group>"; };
+		A001000100000011 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		A001000100000012 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A001000100000013 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		A001000100000014 /* MenuBarIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarIcon.swift; sourceTree = "<group>"; };
+		A001000100000015 /* Color+Gauge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Gauge.swift"; sourceTree = "<group>"; };
+		A001000100000016 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A001000100000017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A001000100000018 /* UsageMeter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UsageMeter.entitlements; sourceTree = "<group>"; };
+		A001000200000001 /* UsageMeter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UsageMeter.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A001000300000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A001000400000001 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A001000200000001 /* UsageMeter.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A001000400000002 /* UsageMeter */ = {
+			isa = PBXGroup;
+			children = (
+				A001000400000003 /* App */,
+				A001000400000004 /* Models */,
+				A001000400000005 /* Services */,
+				A001000400000006 /* Views */,
+				A001000400000007 /* Drawing */,
+				A001000400000008 /* Extensions */,
+				A001000400000009 /* Resources */,
+				A001000100000017 /* Info.plist */,
+				A001000100000018 /* UsageMeter.entitlements */,
+			);
+			path = UsageMeter;
+			sourceTree = "<group>";
+		};
+		A001000400000003 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000001 /* UsageMeterApp.swift */,
+				A001000100000002 /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		A001000400000004 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000003 /* UsageData.swift */,
+				A001000100000004 /* AppSettings.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A001000400000005 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000005 /* KeychainService.swift */,
+				A001000100000006 /* WebController.swift */,
+				A001000100000007 /* APIClient.swift */,
+				A001000100000008 /* UsageTracker.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A001000400000006 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000009 /* PopoverView.swift */,
+				A001000100000010 /* CircularGaugeView.swift */,
+				A001000100000011 /* StatsView.swift */,
+				A001000100000012 /* SettingsView.swift */,
+				A001000100000013 /* OnboardingView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A001000400000007 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000014 /* MenuBarIcon.swift */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		A001000400000008 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000015 /* Color+Gauge.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A001000400000009 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A001000100000016 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		A001000400000010 /* MainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				A001000400000002 /* UsageMeter */,
+				A001000400000001 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A001000500000001 /* UsageMeter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A001000600000001 /* Build configuration list for PBXNativeTarget "UsageMeter" */;
+			buildPhases = (
+				A001000700000001 /* Sources */,
+				A001000300000001 /* Frameworks */,
+				A001000800000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UsageMeter;
+			productName = UsageMeter;
+			productReference = A001000200000001 /* UsageMeter.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A001000900000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					A001000500000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = A001000600000002 /* Build configuration list for PBXProject "UsageMeter" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A001000400000010 /* MainGroup */;
+			productRefGroup = A001000400000001 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A001000500000001 /* UsageMeter */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A001000800000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001000000000016 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A001000700000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A001000000000001 /* UsageMeterApp.swift in Sources */,
+				A001000000000002 /* AppDelegate.swift in Sources */,
+				A001000000000003 /* UsageData.swift in Sources */,
+				A001000000000004 /* AppSettings.swift in Sources */,
+				A001000000000005 /* KeychainService.swift in Sources */,
+				A001000000000006 /* WebController.swift in Sources */,
+				A001000000000007 /* APIClient.swift in Sources */,
+				A001000000000008 /* UsageTracker.swift in Sources */,
+				A001000000000009 /* PopoverView.swift in Sources */,
+				A001000000000010 /* CircularGaugeView.swift in Sources */,
+				A001000000000011 /* StatsView.swift in Sources */,
+				A001000000000012 /* SettingsView.swift in Sources */,
+				A001000000000013 /* OnboardingView.swift in Sources */,
+				A001000000000014 /* MenuBarIcon.swift in Sources */,
+				A001000000000015 /* Color+Gauge.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A001000A00000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A001000A00000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_CYCLE = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A001000A00000003 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UsageMeter/UsageMeter.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = UsageMeter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usagemeter.UsageMeter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Debug;
+		};
+		A001000A00000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = UsageMeter/UsageMeter.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = UsageMeter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.usagemeter.UsageMeter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A001000600000001 /* Build configuration list for PBXNativeTarget "UsageMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A001000A00000003 /* Debug */,
+				A001000A00000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A001000600000002 /* Build configuration list for PBXProject "UsageMeter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A001000A00000001 /* Debug */,
+				A001000A00000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = A001000900000001 /* Project object */;
+}
