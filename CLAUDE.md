@@ -4,8 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-- **Build & Run:** Open `UsageMeter.xcodeproj` in Xcode, select the `UsageMeter` scheme, press ⌘R. No CLI build is configured.
-- **Clean build:** Product → Clean Build Folder (⇧⌘K) in Xcode.
+- **Build & run (CLI):** `make run` — compiles with Swift Package Manager, assembles the `.app` bundle, ad-hoc signs it, and launches it. The app appears in the menu bar only (no Dock icon).
+- **Stop the running app:** `make kill`
+- **Clean:** `make clean` — removes `.build/` and `UsageMeter.app`
+- **Xcode (alternative):** Open `UsageMeter.xcodeproj`, select the `UsageMeter` scheme, press ⌘R.
 - There are no automated tests in this project.
 
 ## Architecture
