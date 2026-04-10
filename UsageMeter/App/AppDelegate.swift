@@ -41,7 +41,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.action = #selector(handleStatusItemClick(_:))
         statusItem.button?.target = self
         statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
-        statusItem.button?.toolTip = "UsageMeter — Claude usage tracker"
+        statusItem.button?.toolTip = "Token usage meter"
     }
 
     private func updateIcon(fraction: Double) {
@@ -58,10 +58,17 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func showContextMenu() {
         let menu = NSMenu()
-        menu.addItem(NSMenuItem(title: "Refresh", action: #selector(refreshAction), keyEquivalent: "r"))
+
+        let refreshItem = NSMenuItem(title: "Refresh", action: #selector(refreshAction), keyEquivalent: "r")
+        refreshItem.target = self
+        menu.addItem(refreshItem)
+
         menu.addItem(.separator())
-        menu.addItem(NSMenuItem(title: "Quit UsageMeter", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
-        for item in menu.items { item.target = self }
+
+        let quitItem = NSMenuItem(title: "Quit Token usage meter", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
+        quitItem.target = NSApp
+        menu.addItem(quitItem)
+
         statusItem.menu = menu
         statusItem.button?.performClick(nil)
         statusItem.menu = nil

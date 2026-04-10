@@ -10,41 +10,30 @@ final class UsageTracker: ObservableObject {
     @Published var needsOnboarding: Bool = false
 
     let webController: WebController
+    private let claudeClient: ClaudeClient
     private let apiClient: APIClient
     private let keychain: KeychainService
     private let settings: AppSettings
 
     private var pollingTimer: AnyCancellable?
-    private var webCancellable: AnyCancellable?
     private var fetchTimeoutTask: Task<Void, Never>?
 
     init(settings: AppSettings = .shared, keychain: KeychainService = .shared) {
         self.settings      = settings
         self.keychain      = keychain
         self.webController = WebController()
+        self.claudeClient  = ClaudeClient()
         self.apiClient     = APIClient()
 
         // Show last-known data immediately on launch
         currentUsage = loadSnapshot()?.data
 
-        // Wire up web interception results
-        webCancellable = webController.usageDataSubject
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] data in
-                self?.receiveUsage(data)
-                self?.fetchTimeoutTask?.cancel()
-                self?.isRefreshing = false
-            }
+        // Check if we have what we need to fetch
+        let hasSessionKey = keychain.load(account: "claudeSessionKey") != nil
+        needsOnboarding = !hasSessionKey && settings.trackingMode == .web
 
-        // Configure API key
-        if let key = keychain.load(account: "anthropicAPIKey") {
-            Task { await apiClient.setKey(key) }
-        }
-
-        needsOnboarding = !settings.hasCompletedOnboarding && settings.trackingMode == .web
         rescheduleTimer()
 
-        // Kick off first fetch only if onboarding is done
         if !needsOnboarding {
             refresh()
         }
@@ -59,17 +48,9 @@ final class UsageTracker: ObservableObject {
 
         switch settings.trackingMode {
         case .web:
-            // Load page; result arrives via webCancellable sink
-            webController.fetchLatestUsage()
-            // Safety timeout: if no data within 30s, stop spinner
-            fetchTimeoutTask = Task { @MainActor in
-                try? await Task.sleep(nanoseconds: 30_000_000_000)
-                if !Task.isCancelled {
-                    isRefreshing = false
-                    if currentUsage == nil {
-                        lastError = "No usage data found. Make sure you're logged in."
-                    }
-                }
+            Task { @MainActor in
+                await fetchFromClaudeAPI()
+                isRefreshing = false
             }
 
         case .api:
@@ -95,6 +76,20 @@ final class UsageTracker: ObservableObject {
         refresh()
     }
 
+    func setSessionKey(_ key: String) {
+        keychain.save(key, account: "claudeSessionKey")
+        webController.setSessionCookie(key)
+        settings.hasCompletedOnboarding = true
+        needsOnboarding = false
+        // Auto-discover org ID if not already stored
+        if keychain.load(account: "claudeOrgID") == nil {
+            Task { @MainActor in
+                await discoverAndStoreOrgID(sessionKey: key)
+            }
+        }
+        refresh()
+    }
+
     func updateAPIKey(_ key: String, orgID: String) {
         keychain.save(key, account: "anthropicAPIKey")
         keychain.save(orgID, account: "anthropicOrgID")
@@ -104,12 +99,54 @@ final class UsageTracker: ObservableObject {
     func clearCredentials() {
         keychain.delete(account: "anthropicAPIKey")
         keychain.delete(account: "anthropicOrgID")
+        keychain.delete(account: "claudeSessionKey")
+        keychain.delete(account: "claudeOrgID")
         settings.hasCompletedOnboarding = false
         needsOnboarding = settings.trackingMode == .web
         currentUsage = nil
     }
 
     // MARK: - Private
+
+    private func fetchFromClaudeAPI() async {
+        guard let sessionKey = keychain.load(account: "claudeSessionKey"),
+              !sessionKey.isEmpty else {
+            lastError = "Session key not set. Open Settings and paste your sessionKey."
+            return
+        }
+
+        // Ensure we have an org ID (discover if missing)
+        var orgID = keychain.load(account: "claudeOrgID") ?? ""
+        if orgID.isEmpty {
+            orgID = await discoverAndStoreOrgID(sessionKey: sessionKey) ?? ""
+        }
+        guard !orgID.isEmpty else {
+            lastError = "Could not determine organization ID. Check your session key."
+            return
+        }
+
+        do {
+            let data = try await claudeClient.fetchUsage(sessionKey: sessionKey, orgID: orgID)
+            receiveUsage(data)
+            print("[UsageMeter] ✓ claude.ai API: session=\(data.sessionUtilization as Any)% weekly=\(data.weeklyUtilization as Any)%")
+        } catch {
+            lastError = error.localizedDescription
+            print("[UsageMeter] ✗ claude.ai API error: \(error)")
+        }
+    }
+
+    @discardableResult
+    private func discoverAndStoreOrgID(sessionKey: String) async -> String? {
+        do {
+            let orgID = try await claudeClient.discoverOrgID(sessionKey: sessionKey)
+            keychain.save(orgID, account: "claudeOrgID")
+            print("[UsageMeter] Discovered org ID: \(orgID)")
+            return orgID
+        } catch {
+            print("[UsageMeter] Org discovery failed: \(error)")
+            return nil
+        }
+    }
 
     private func fetchFromAPI() async {
         let orgID = keychain.load(account: "anthropicOrgID") ?? ""

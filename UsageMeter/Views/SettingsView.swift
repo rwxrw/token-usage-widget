@@ -7,7 +7,9 @@ struct SettingsView: View {
 
     @State private var apiKeyInput: String = ""
     @State private var orgIDInput: String = ""
-    @State private var showOnboarding: Bool = false
+    @State private var sessionKeyInput: String = ""
+    @State private var sessionKeySaved: Bool = false
+    @State private var storedOrgID: String = ""
 
     var body: some View {
         NavigationStack {
@@ -26,13 +28,62 @@ struct SettingsView: View {
                     .pickerStyle(.segmented)
 
                     if settings.trackingMode == .web {
+                        // Session Key
+                        SecureField("Session Key  (sk-ant-sid…)", text: $sessionKeyInput)
+                            .textFieldStyle(.roundedBorder)
+
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text("How to get your session token:")
+                                .font(.caption)
+                                .fontWeight(.medium)
+                                .foregroundStyle(.secondary)
+                            Text("1. Open **claude.ai** in Safari or Chrome")
+                                .font(.caption).foregroundStyle(.secondary)
+                            Text("2. Open DevTools (⌥⌘I)")
+                                .font(.caption).foregroundStyle(.secondary)
+                            Text("3. Go to **Application** → **Cookies** → `claude.ai`")
+                                .font(.caption).foregroundStyle(.secondary)
+                            Text("4. Copy the value of **sessionKey**")
+                                .font(.caption).foregroundStyle(.secondary)
+                        }
+                        .padding(.vertical, 2)
+
                         HStack {
-                            Text(settings.hasCompletedOnboarding ? "Logged in" : "Not logged in")
-                                .foregroundStyle(settings.hasCompletedOnboarding ? .green : .orange)
+                            Button(sessionKeySaved ? "Saved ✓" : "Save Session Key") {
+                                tracker.setSessionKey(sessionKeyInput)
+                                sessionKeySaved = true
+                                // Re-read org ID after auto-discovery
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    sessionKeySaved = false
+                                    storedOrgID = KeychainService.shared.load(account: "claudeOrgID") ?? ""
+                                }
+                            }
+                            .buttonStyle(.borderedProminent)
+                            .disabled(sessionKeyInput.isEmpty)
+
                             Spacer()
-                            Button("Re-login") { showOnboarding = true }
-                                .buttonStyle(.bordered)
-                                .controlSize(.small)
+
+                            HStack(spacing: 4) {
+                                Circle()
+                                    .fill(settings.hasCompletedOnboarding ? Color.green : Color.orange)
+                                    .frame(width: 8, height: 8)
+                                Text(settings.hasCompletedOnboarding ? "Active" : "Not set")
+                                    .font(.callout)
+                                    .foregroundStyle(.secondary)
+                            }
+                        }
+
+                        if !storedOrgID.isEmpty {
+                            HStack(spacing: 4) {
+                                Text("Org ID")
+                                    .foregroundStyle(.secondary)
+                                    .font(.caption)
+                                Text(storedOrgID)
+                                    .font(.caption)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                                    .truncationMode(.middle)
+                            }
                         }
                     } else {
                         SecureField("Anthropic API Key (sk-ant-admin…)", text: $apiKeyInput)
@@ -62,9 +113,12 @@ struct SettingsView: View {
                 Section {
                     Button("Clear All Credentials", role: .destructive) {
                         tracker.clearCredentials()
+                        sessionKeyInput = ""
+                        storedOrgID = ""
                     }
                 }
             }
+            .formStyle(.grouped)
             .navigationTitle("Settings")
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
@@ -72,16 +126,12 @@ struct SettingsView: View {
                 }
             }
         }
-        .frame(width: 360, height: 420)
-        .sheet(isPresented: $showOnboarding) {
-            OnboardingView()
-                .environmentObject(tracker)
-        }
+        .frame(width: 380, height: 480)
         .onAppear {
-            // Pre-fill with stored values (masked for API key display)
             let storedKey = KeychainService.shared.load(account: "anthropicAPIKey") ?? ""
             apiKeyInput = storedKey.isEmpty ? "" : String(repeating: "•", count: min(storedKey.count, 20))
             orgIDInput  = KeychainService.shared.load(account: "anthropicOrgID") ?? ""
+            storedOrgID = KeychainService.shared.load(account: "claudeOrgID") ?? ""
         }
     }
 }

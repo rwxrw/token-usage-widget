@@ -10,7 +10,7 @@ struct PopoverView: View {
         VStack(spacing: 0) {
             // ── Header ────────────────────────────────────────────────
             HStack {
-                Text("UsageMeter")
+                Text("Token usage meter")
                     .font(.headline)
                     .foregroundStyle(.primary)
                 Spacer()
@@ -75,6 +75,15 @@ struct PopoverView: View {
                 }
                 .buttonStyle(.plain)
                 .disabled(tracker.isRefreshing)
+
+                Button {
+                    NSApplication.shared.terminate(nil)
+                } label: {
+                    Image(systemName: "power")
+                        .imageScale(.small)
+                        .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)

@@ -20,3 +20,7 @@ build/
 # User-specific Xcode settings
 *.xcuserstate
 xcuserdata/
+
+# Build artifacts
+*.app/
+*.zip

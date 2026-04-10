@@ -10,8 +10,12 @@
 	<string>com.usagemeter.UsageMeter</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
+	<key>CFBundleDisplayName</key>
+	<string>Token usage meter</string>
 	<key>CFBundleName</key>
-	<string>UsageMeter</string>
+	<string>Token usage meter</string>
+	<key>CFBundleIconFile</key>
+	<string>AppIcon</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

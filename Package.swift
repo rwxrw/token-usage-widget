@@ -13,7 +13,8 @@ let package = Package(
                 "UsageMeter.entitlements",
             ],
             resources: [
-                .process("Resources/Assets.xcassets")
+                .process("Resources/Assets.xcassets"),
+                .copy("Resources/AppIcon.icns"),
             ]
         )
     ]
