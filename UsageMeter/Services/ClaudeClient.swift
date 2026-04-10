@@ -4,7 +4,7 @@ import Foundation
 private struct UsageResponse: Decodable {
     struct Window: Decodable {
         let utilization: Double
-        let resets_at: String
+        let resets_at: String?   // null when no active session
     }
     struct ExtraUsage: Decodable {
         let is_enabled: Bool
@@ -12,8 +12,8 @@ private struct UsageResponse: Decodable {
         let used_credits: Double?
         let utilization: Double?
     }
-    let five_hour: Window
-    let seven_day: Window
+    let five_hour: Window?
+    let seven_day: Window?
     let extra_usage: ExtraUsage?
 }
 
@@ -100,10 +100,10 @@ actor ClaudeClient {
 
     private func makeUsageData(from r: UsageResponse) -> UsageData {
         var usage = UsageData(fetchedAt: Date(), source: .claudeWebAPI)
-        usage.sessionUtilization = r.five_hour.utilization
-        usage.sessionResetsAt    = isoFormatter.date(from: r.five_hour.resets_at)
-        usage.weeklyUtilization  = r.seven_day.utilization
-        usage.weeklyResetsAt     = isoFormatter.date(from: r.seven_day.resets_at)
+        usage.sessionUtilization = r.five_hour?.utilization ?? 0
+        usage.sessionResetsAt    = r.five_hour?.resets_at.flatMap { isoFormatter.date(from: $0) }
+        usage.weeklyUtilization  = r.seven_day?.utilization
+        usage.weeklyResetsAt     = r.seven_day?.resets_at.flatMap { isoFormatter.date(from: $0) }
 
         if let extra = r.extra_usage {
             usage.extraCreditsEnabled     = extra.is_enabled
